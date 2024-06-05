@@ -20,9 +20,21 @@ public class ArtistaController {
         return artistaService.getAllArtistas();
     }
 
+    @GetMapping("/{id}")
+    public ResponseEntity<Artista> getArtistaById(@PathVariable Long id) {
+        Artista artista = artistaService.getArtistaById(id);
+        return ResponseEntity.ok().body(artista);
+    }
+
     @PostMapping("/create")
     public Artista createArtista(@RequestBody Artista artista) {
         return artistaService.createArtista(artista);
+    }
+
+    @PutMapping("/edit/{id}")
+    public ResponseEntity<Artista> editArtista(@PathVariable Long id, @RequestBody Artista artista) {
+        Artista updatedArtista = artistaService.editArtista(id, artista);
+        return ResponseEntity.ok().body(updatedArtista);
     }
 
     @DeleteMapping("/delete/{id}")

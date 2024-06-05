@@ -20,13 +20,35 @@ public class PlaylistController {
         return playlistService.getAllPlaylists();
     }
 
+    @GetMapping("/{id}")
+    public ResponseEntity<Playlist> getPlaylistById(@PathVariable Long id) {
+        Playlist playlist = playlistService.getPlaylistById(id);
+        if (playlist != null) {
+            return new ResponseEntity<>(playlist, HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
+
     @PostMapping("/create")
-    public Playlist createPlaylist(@RequestBody Playlist playlist) {
-        return playlistService.createPlaylist(playlist);
+    public ResponseEntity<Playlist> createPlaylist(@RequestBody Playlist playlist) {
+        Playlist createdPlaylist = playlistService.createPlaylist(playlist);
+        return new ResponseEntity<>(createdPlaylist, HttpStatus.CREATED);
+    }
+
+    @PutMapping("/edit/{id}")
+    public ResponseEntity<Playlist> editPlaylist(@PathVariable Long id, @RequestBody Playlist playlist) {
+        Playlist editedPlaylist = playlistService.editPlaylist(id, playlist);
+        if (editedPlaylist != null) {
+            return new ResponseEntity<>(editedPlaylist, HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
     }
 
     @DeleteMapping("/delete/{id}")
-    public void deletePlaylist(@PathVariable Long id) {
+    public ResponseEntity<?> deletePlaylist(@PathVariable Long id) {
         playlistService.deletePlaylist(id);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 }

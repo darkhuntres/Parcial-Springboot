@@ -7,25 +7,37 @@ import jakarta.persistence.*;
 public class CancionesPlaylists {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id_cancion;
+    private Long id;
 
-    private Long id_playlist;
+    @Column(name = "id_cancion")
+    private Long idCancion;
+
+    @Column(name = "id_playlist")
+    private Long idPlaylist;
 
     // Getters y Setters
 
-    public Long getId_cancion() {
-        return id_cancion;
+    public Long getId() {
+        return id;
     }
 
-    public void setId_cancion(Long id_cancion) {
-        this.id_cancion = id_cancion;
+    public void setId(Long id) {
+        this.id = id;
     }
 
-    public Long getId_playlist() {
-        return id_playlist;
+    public Long getIdCancion() {
+        return idCancion;
     }
 
-    public void setId_playlist(Long id_playlist) {
-        this.id_playlist = id_playlist;
+    public void setIdCancion(Long idCancion) {
+        this.idCancion = idCancion;
+    }
+
+    public Long getIdPlaylist() {
+        return idPlaylist;
+    }
+
+    public void setIdPlaylist(Long idPlaylist) {
+        this.idPlaylist = idPlaylist;
     }
 }

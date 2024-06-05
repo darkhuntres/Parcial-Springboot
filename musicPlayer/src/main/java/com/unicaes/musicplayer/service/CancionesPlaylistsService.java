@@ -23,4 +23,8 @@ public class CancionesPlaylistsService {
     public void deleteCancionesPlaylists(Long id) {
         cancionesPlaylistsRepository.deleteById(id);
     }
+
+    public List<CancionesPlaylists> getCancionesPlaylistsByPlaylistId(Long idPlaylist) {
+        return cancionesPlaylistsRepository.findByIdPlaylist(idPlaylist);
+    }
 }

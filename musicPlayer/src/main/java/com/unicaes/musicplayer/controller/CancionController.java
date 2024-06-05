@@ -20,6 +20,16 @@ public class CancionController {
         return cancionService.getAllCanciones();
     }
 
+    @GetMapping("/{id}")
+    public ResponseEntity<Cancion> getCancionById(@PathVariable Long id) {
+        Cancion cancion = cancionService.getCancionById(id);
+        if (cancion != null) {
+            return new ResponseEntity<>(cancion, HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
+
     @PostMapping("/create")
     public ResponseEntity<Cancion> createCancion(@RequestBody Cancion cancion) {
         Cancion createdCancion = cancionService.createCancion(cancion);
@@ -27,7 +37,8 @@ public class CancionController {
     }
 
     @DeleteMapping("/delete/{id}")
-    public void deleteCancion(@PathVariable Long id) {
+    public ResponseEntity<?> deleteCancion(@PathVariable Long id) {
         cancionService.deleteCancion(id);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 }

@@ -27,4 +27,9 @@ public class CancionesPlaylistsController {
     public void deleteCancionesPlaylists(@PathVariable Long id) {
         cancionesPlaylistsService.deleteCancionesPlaylists(id);
     }
+
+    @GetMapping("/playlist/{id}")
+    public List<CancionesPlaylists> getCancionesPlaylistsByPlaylistId(@PathVariable Long id) {
+        return cancionesPlaylistsService.getCancionesPlaylistsByPlaylistId(id);
+    }
 }
