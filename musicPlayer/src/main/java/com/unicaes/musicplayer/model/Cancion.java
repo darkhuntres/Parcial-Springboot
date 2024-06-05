@@ -3,20 +3,17 @@ package com.unicaes.musicplayer.model;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "cancion")
 public class Cancion {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;  // Cambiado de int a Long
+    private Long id;
     private String nombre;
     private String imagen;
-    private String archivo;
-
-    @ManyToOne
-    @JoinColumn(name = "id_artista")
-    private Artista artista;
+    private String cancion; // Cambiado el nombre del campo
+    private Long idArtista; // Cambiado el nombre del campo
 
     // Getters y Setters
+
     public Long getId() {
         return id;
     }
@@ -24,7 +21,6 @@ public class Cancion {
     public void setId(Long id) {
         this.id = id;
     }
-
 
     public String getNombre() {
         return nombre;
@@ -42,19 +38,19 @@ public class Cancion {
         this.imagen = imagen;
     }
 
-    public String getArchivo() {
-        return archivo;
+    public String getCancion() {
+        return cancion;
     }
 
-    public void setArchivo(String archivo) {
-        this.archivo = archivo;
+    public void setCancion(String cancion) {
+        this.cancion = cancion;
     }
 
-    public Artista getArtista() {
-        return artista;
+    public Long getIdArtista() {
+        return idArtista;
     }
 
-    public void setArtista(Artista artista) {
-        this.artista = artista;
+    public void setIdArtista(Long idArtista) {
+        this.idArtista = idArtista;
     }
 }

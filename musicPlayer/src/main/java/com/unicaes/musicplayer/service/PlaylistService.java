@@ -9,7 +9,6 @@ import java.util.List;
 
 @Service
 public class PlaylistService {
-
     @Autowired
     private PlaylistRepository playlistRepository;
 
@@ -17,11 +16,7 @@ public class PlaylistService {
         return playlistRepository.findAll();
     }
 
-    public Playlist getPlaylistById(Long id) {
-        return playlistRepository.findById(id).orElse(null);
-    }
-
-    public Playlist savePlaylist(Playlist playlist) {
+    public Playlist createPlaylist(Playlist playlist) {
         return playlistRepository.save(playlist);
     }
 

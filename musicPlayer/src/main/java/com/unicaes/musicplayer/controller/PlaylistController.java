@@ -3,31 +3,26 @@ package com.unicaes.musicplayer.controller;
 import com.unicaes.musicplayer.model.Playlist;
 import com.unicaes.musicplayer.service.PlaylistService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
-@CrossOrigin(origins = "*")
 @RequestMapping("/api/playlist")
 public class PlaylistController {
-
     @Autowired
     private PlaylistService playlistService;
 
-    @GetMapping("/getAll")
+    @GetMapping("/all")
     public List<Playlist> getAllPlaylists() {
         return playlistService.getAllPlaylists();
     }
 
-    @GetMapping("/getById/{id}")
-    public Playlist getPlaylistById(@PathVariable Long id) {
-        return playlistService.getPlaylistById(id);
-    }
-
     @PostMapping("/create")
     public Playlist createPlaylist(@RequestBody Playlist playlist) {
-        return playlistService.savePlaylist(playlist);
+        return playlistService.createPlaylist(playlist);
     }
 
     @DeleteMapping("/delete/{id}")

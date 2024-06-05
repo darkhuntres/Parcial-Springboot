@@ -3,36 +3,27 @@ package com.unicaes.musicplayer.controller;
 import com.unicaes.musicplayer.model.Cancion;
 import com.unicaes.musicplayer.service.CancionService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
-@CrossOrigin(origins = "*")
 @RequestMapping("/api/cancion")
 public class CancionController {
-
     @Autowired
     private CancionService cancionService;
 
-    @GetMapping("/getAll")
+    @GetMapping("/all")
     public List<Cancion> getAllCanciones() {
         return cancionService.getAllCanciones();
     }
 
-    @GetMapping("/getById/{id}")
-    public Cancion getCancionById(@PathVariable Long id) {
-        return cancionService.getCancionById(id);
-    }
-
     @PostMapping("/create")
-    public Cancion createCancion(@RequestBody Cancion cancion) {
-        return cancionService.saveCancion(cancion);
-    }
-
-    @PutMapping("/update/{id}")
-    public Cancion updateCancion(@PathVariable Long id, @RequestBody Cancion cancion) {
-        return cancionService.updateCancion(id, cancion);
+    public ResponseEntity<Cancion> createCancion(@RequestBody Cancion cancion) {
+        Cancion createdCancion = cancionService.createCancion(cancion);
+        return new ResponseEntity<>(createdCancion, HttpStatus.CREATED);
     }
 
     @DeleteMapping("/delete/{id}")
