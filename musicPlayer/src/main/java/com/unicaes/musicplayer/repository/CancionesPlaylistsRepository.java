@@ -8,3 +8,4 @@ import java.util.List;
 public interface CancionesPlaylistsRepository extends JpaRepository<CancionesPlaylists, Long> {
     List<CancionesPlaylists> findByIdPlaylist(Long idPlaylist);
 }
+
