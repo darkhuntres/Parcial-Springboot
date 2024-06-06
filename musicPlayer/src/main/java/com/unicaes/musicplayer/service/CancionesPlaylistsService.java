@@ -57,9 +57,11 @@ public class CancionesPlaylistsService {
                     Cancion cancion = cancionRepository.findById(cp.getIdCancion()).orElse(null);
                     if (cancion != null) {
                         CancionInfoDTO dto = new CancionInfoDTO();
+                        dto.setId(cancion.getId());
+                        dto.setNombre(cancion.getNombre());
+                        dto.setImagen(cancion.getImagen());
+                        dto.setArtista(cancion.getArtista().getNombre());
                         dto.setCancionArchivo(cancion.getCancion());
-                        dto.setCancionImagen(cancion.getImagen());
-                        dto.setCancionNombre(cancion.getNombre());
                         return dto;
                     }
                     return null;
