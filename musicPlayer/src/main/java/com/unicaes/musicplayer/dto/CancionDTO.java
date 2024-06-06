@@ -1,19 +1,11 @@
-package com.unicaes.musicplayer.model;
+package com.unicaes.musicplayer.dto;
 
-import jakarta.persistence.*;
-
-@Entity
-public class Cancion {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+public class CancionDTO {
     private Long id;
     private String nombre;
     private String imagen;
     private String cancion;
-
-    @ManyToOne
-    @JoinColumn(name = "id_artista")
-    private Artista artista;
+    private String artista;
 
     // Getters y Setters
 
@@ -49,11 +41,11 @@ public class Cancion {
         this.cancion = cancion;
     }
 
-    public Artista getArtista() {
+    public String getArtista() {
         return artista;
     }
 
-    public void setArtista(Artista artista) {
+    public void setArtista(String artista) {
         this.artista = artista;
     }
 }

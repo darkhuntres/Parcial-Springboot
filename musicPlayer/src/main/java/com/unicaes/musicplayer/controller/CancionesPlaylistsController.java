@@ -1,5 +1,7 @@
 package com.unicaes.musicplayer.controller;
 
+import com.unicaes.musicplayer.dto.CancionInfoDTO;
+import com.unicaes.musicplayer.dto.CancionesPlaylistsDTO;
 import com.unicaes.musicplayer.model.CancionesPlaylists;
 import com.unicaes.musicplayer.service.CancionesPlaylistsService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,7 +31,12 @@ public class CancionesPlaylistsController {
     }
 
     @GetMapping("/playlist/{id}")
-    public List<CancionesPlaylists> getCancionesPlaylistsByPlaylistId(@PathVariable Long id) {
+    public List<CancionesPlaylistsDTO> getCancionesPlaylistsByPlaylistId(@PathVariable Long id) {
         return cancionesPlaylistsService.getCancionesPlaylistsByPlaylistId(id);
+    }
+
+    @GetMapping("/playlist/{id}/canciones")
+    public List<CancionInfoDTO> getCancionesInfoByPlaylistId(@PathVariable Long id) {
+        return cancionesPlaylistsService.getCancionesInfoByPlaylistId(id);
     }
 }

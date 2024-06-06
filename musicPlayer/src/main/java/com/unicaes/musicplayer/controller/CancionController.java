@@ -1,5 +1,6 @@
 package com.unicaes.musicplayer.controller;
 
+import com.unicaes.musicplayer.dto.CancionDTO;
 import com.unicaes.musicplayer.model.Cancion;
 import com.unicaes.musicplayer.service.CancionService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,13 +17,13 @@ public class CancionController {
     private CancionService cancionService;
 
     @GetMapping("/all")
-    public List<Cancion> getAllCanciones() {
+    public List<CancionDTO> getAllCanciones() {
         return cancionService.getAllCanciones();
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Cancion> getCancionById(@PathVariable Long id) {
-        Cancion cancion = cancionService.getCancionById(id);
+    public ResponseEntity<CancionDTO> getCancionById(@PathVariable Long id) {
+        CancionDTO cancion = cancionService.getCancionById(id);
         if (cancion != null) {
             return new ResponseEntity<>(cancion, HttpStatus.OK);
         } else {
